@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Reservation Form</title>
+</head>
+
+<body>
+  <h2>Reservation Form</h2>
+
+  <form action="/reservation" method="POST">
+    <label for="customer_id">Customer ID:</label>
+    <input type="text" name="customer_id" required><br><br>
+
+    <label for="car_id">Car ID:</label>
+    <input type="text" name="car_id" required><br><br>
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" required><br><br>
+
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" required><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+
+</html>

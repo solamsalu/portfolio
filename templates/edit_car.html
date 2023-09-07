@@ -1,0 +1,27 @@
+<h1>Edit Car Listing</h1>
+
+<form action="/cars/edit/{{ car.car_id }}" method="post">
+  <label for="make">Make:</label>
+  <input type="text" id="make" name="make" value="{{ car.make }}" required>
+
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model" value="{{ car.model }}" required>
+
+  <label for="year">Year:</label>
+  <input type="number" id="year" name="year" value="{{ car.year }}" required>
+
+  <label for="daily_rate">Daily Rate:</label>
+  <input type="number" id="daily_rate" name="daily_rate" step="0.01" value="{{ car.daily_rate }}" required>
+
+  <!-- <label for="mileage">Mileage:</label>
+  <input type="number" id="mileage" name="mileage" value="{{ car.mileage }}">
+
+  <label for="color">Color:</label>
+  <input type="text" id="color" name="color" value="{{ car.color }}"> -->
+
+  <!-- Include other car-related fields as needed -->
+
+  <input type="submit" value="Update Car">
+</form>
+
+<a href="/cars">Back to Car Listings</a>

@@ -1,0 +1,327 @@
+from flask import Flask, render_template, request, redirect
+from flask_sqlalchemy import SQLAlchemy
+
+
+def get_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+                        (post_id,)).fetchone()
+    conn.close()
+    if post is None:
+        abort(404)
+    return post
+
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
+db = SQLAlchemy(app)
+
+
+class Customer(db.Model):
+    __tablename__ = 'customer'
+
+    customer_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+
+
+class Payment(db.Model):
+    payment_id = db.Column(db.Integer, primary_key=True)
+    reservation_id = db.Column(db.Integer, db.ForeignKey(
+        'reservation.reservation_id'), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    payment_date = db.Column(db.Date, nullable=False)
+    # Add additional payment-related fields as needed
+
+
+class Reservation(db.Model):
+    __tablename__ = 'reservation'
+
+    reservation_id = db.Column(db.Integer, primary_key=True)
+    car_id = db.Column(db.Integer, db.ForeignKey(
+        'car_list.car_id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey(
+        'customer.customer_id'), nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
+    # pickup_location = db.Column(db.String(100), nullable=False)
+    # return_location = db.Column(db.String(100), nullable=False)
+    # total_cost = db.Column(db.Float, nullable=False)
+    # insurance_option = db.Column(db.String(50))
+    # is_completed = db.Column(db.Boolean, default=False)
+    # additional_notes = db.Column(db.Text)
+    # discount = db.Column(db.Float, default=0)
+
+    # Define the relationships
+    car = db.relationship('CarList', backref='reservations')
+    customer = db.relationship('Customer', backref='reservations')
+
+
+class CarList(db.Model):
+    __tablename__ = 'car_list'
+
+    car_id = db.Column(db.Integer, primary_key=True)
+    make = db.Column(db.String(50), nullable=False)
+    model = db.Column(db.String(50), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    daily_rate = db.Column(db.Float, nullable=False)
+    # mileage = db.Column(db.Integer)
+    # color = db.Column(db.String(20))
+    # transmission = db.Column(db.String(20))
+    # fuel_type = db.Column(db.String(20))
+    # engine_capacity = db.Column(db.Float)
+    # description = db.Column(db.Text)
+    # image_url = db.Column(db.String(200))
+    # is_available = db.Column(db.Boolean, default=True)
+    # location = db.Column(db.String(100))
+    # license_plate = db.Column(db.String(20))
+    # vehicle_identification_number = db.Column(db.String(50))
+    # seating_capacity = db.Column(db.Integer)
+    # body_type = db.Column(db.String(50))
+    # drive_type = db.Column(db.String(50))
+    # fuel_consumption = db.Column(db.Float)
+    # features = db.Column(db.Text)
+    # insurance_information = db.Column(db.Text)
+    # maintenance_records = db.Column(db.Text)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/carListing')
+def carListing():
+    return render_template('carListing.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/reservation', methods=['GET', 'POST'])
+def reservation():
+    if request.method == 'POST':
+        # Retrieve form data
+        customer_id = request.form['customer_id']
+        car_id = request.form['car_id']
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+
+        # Create a new Reservation object
+        reservation = Reservation(
+            customer_id=customer_id, car_id=car_id, start_date=start_date, end_date=end_date)
+
+        # Add the reservation to the database
+        db.session.add(reservation)
+        db.session.commit()
+
+        return 'Reservation created successfully'
+
+    return render_template('reservation_form.html')
+
+
+@app.route('/customers')
+def customers():
+    customers = Customer.query.all()
+    return render_template('customers.html', customers=customers)
+
+
+@app.route('/customers/add', methods=['GET', 'POST'])
+def add_customer():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        address = request.form['address']
+
+        customer = Customer(name=name, email=email,
+                            phone=phone, address=address)
+        db.session.add(customer)
+        db.session.commit()
+
+        return redirect('/customers')
+
+    return render_template('add_customer.html')
+
+
+@app.route('/customers/edit/<int:customer_id>', methods=['GET', 'POST'])
+def edit_customer(customer_id):
+    customer = Customer.query.get_or_404(customer_id)
+
+    if request.method == 'POST':
+        customer.name = request.form['name']
+        customer.email = request.form['email']
+        customer.phone = request.form['phone']
+        customer.address = request.form['address']
+
+        db.session.commit()
+        return redirect('/customers')
+
+    return render_template('edit_customer.html', customer=customer)
+
+
+@app.route('/customers/delete/<int:customer_id>', methods=['POST'])
+def delete_customer(customer_id):
+    customer = Customer.query.get_or_404(customer_id)
+    db.session.delete(customer)
+    db.session.commit()
+    return redirect('/customers')
+
+
+@app.route('/cars')
+def cars():
+    cars = CarList.query.all()
+    return render_template('car.html', cars=cars)
+
+
+@app.route('/cars/add', methods=['GET', 'POST'])
+def add_car():
+    if request.method == 'POST':
+        make = request.form['make']
+        model = request.form['model']
+        year = request.form['year']
+        daily_rate = request.form['daily_rate']
+        # mileage = request.form['mileage']
+        # color = request.form['color']
+        # Retrieve other car-related fields
+
+        car = CarList(make=make, model=model, year=year,
+                      daily_rate=daily_rate)
+        # Set other car-related fields
+
+        db.session.add(car)
+        db.session.commit()
+
+        return redirect('/cars')
+
+    return render_template('add_car.html')
+
+
+@app.route('/cars/edit/<int:car_id>', methods=['GET', 'POST'])
+def edit_car(car_id):
+    car = CarList.query.get_or_404(car_id)
+
+    if request.method == 'POST':
+        car.make = request.form['make']
+        car.model = request.form['model']
+        car.year = request.form['year']
+        car.daily_rate = request.form['daily_rate']
+        # car.mileage = request.form['mileage']
+        # car.color = request.form['color']
+        # Update other car-related fields
+
+        db.session.commit()
+        return redirect('/cars')
+
+    return render_template('edit_car.html', car=car)
+
+
+@app.route('/cars/delete/<int:car_id>', methods=['POST'])
+def delete_car(car_id):
+    car = CarList.query.get_or_404(car_id)
+    db.session.delete(car)
+    db.session.commit()
+    return redirect('/cars')
+
+
+@app.route('/payments/add', methods=['GET', 'POST'])
+def add_payment():
+    if request.method == 'POST':
+        reservation_id = request.form['reservation_id']
+        amount = request.form['amount']
+        payment_date = request.form['payment_date']
+        payment_method = request.form['payment_method']
+        transaction_id = request.form['transaction_id']
+        status = request.form['status']
+        # Retrieve other payment-related fields
+
+        payment = Payment(reservation_id=reservation_id, amount=amount, payment_date=payment_date,
+                          payment_method=payment_method, transaction_id=transaction_id, status=status)
+        # Set other payment-related fields
+
+        db.session.add(payment)
+        db.session.commit()
+
+        return redirect('/payments')
+
+    return render_template('add_payment.html')
+
+
+@app.route('/payments/edit/<int:payment_id>', methods=['GET', 'POST'])
+def edit_payment(payment_id):
+    payment = Payment.query.get_or_404(payment_id)
+
+    if request.method == 'POST':
+        payment.reservation_id = request.form['reservation_id']
+        payment.amount = request.form['amount']
+        payment.payment_date = request.form['payment_date']
+        payment.payment_method = request.form['payment_method']
+        payment.transaction_id = request.form['transaction_id']
+        payment.status = request.form['status']
+        # Update other payment-related fields
+
+        db.session.commit()
+        return redirect('/payments')
+
+    return render_template('edit_payment.html', payment=payment)
+
+
+@app.route('/reservations/create', methods=['GET', 'POST'])
+def create_reservation():
+    def calculate_total_cost(car, start_date, end_date, discount=0):
+        # Perform calculations to determine the total cost
+        # Consider factors like car rental rate, duration, additional fees, and discounts
+
+        # Assuming you have a daily_rate property in the CarList model
+        daily_rate = car.daily_rate
+        duration = (end_date - start_date).days
+        base_cost = daily_rate * duration
+
+        total_cost = base_cost - (base_cost * discount)
+
+        return total_cost
+    if request.method == 'POST':
+        car_id = request.form['car_id']
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+        pickup_location = request.form['pickup_location']
+        return_location = request.form['return_location']
+        insurance_option = request.form['insurance_option']
+        additional_notes = request.form['additional_notes']
+        discount = calculate_discount()
+
+        # Calculate total cost based on selected car and dates
+        car = CarList.query.get(car_id)
+        total_cost = calculate_total_cost(car, start_date, end_date, discount)
+
+        # Create the reservation object
+        reservation = Reservation(
+            car_id=car_id,
+            customer_id=current_user.customer_id,  # Assuming you have a current user object
+            start_date=start_date,
+            end_date=end_date,
+            pickup_location=pickup_location,
+            return_location=return_location,
+            total_cost=total_cost,
+            insurance_option=insurance_option,
+            additional_notes=additional_notes,
+            discount=discount
+
+        )
+
+        db.session.add(reservation)
+        db.session.commit()
+
+        return redirect(url_for('reservation_success'))
+
+    # Retrieve available cars for the dropdown
+    available_cars = CarList.query.filter_by(is_available=True).all()
+
+    return render_template('create_reservation.html', available_cars=available_cars)
+
+    if __name__ == '__main__':
+        app.run()

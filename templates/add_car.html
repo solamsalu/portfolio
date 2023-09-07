@@ -1,0 +1,27 @@
+<h1>Add Car Listing</h1>
+
+<form action="/cars/add" method="post">
+  <label for="make">Make:</label>
+  <input type="text" id="make" name="make" required>
+
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model" required>
+
+  <label for="year">Year:</label>
+  <input type="number" id="year" name="year" required>
+
+  <label for="daily_rate">Daily Rate:</label>
+  <input type="number" id="daily_rate" name="daily_rate" step="0.01" required>
+
+  <!-- <label for="mileage">Mileage:</label>
+  <input type="number" id="mileage" name="mileage">
+
+  <label for="color">Color:</label>
+  <input type="text" id="color" name="color"> -->
+
+  <!-- Include other car-related fields as needed -->
+
+  <input type="submit" value="Add Car">
+</form>
+
+<a href="/cars">Back to Car Listings</a>
