@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/css/style.css">
+  <title>Car Listings</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Car Listings</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="search-form">
+        <input type="text" placeholder="Search by make, model, or year">
+        <select>
+          <option value="">All Makes</option>
+          <option value="bmw">BMW</option>
+          <option value="audi">Audi</option>
+          <option value="mercedes">Mercedes</option>
+        </select>
+        <button type="submit">Search</button>
+      </div>
+
+      <div class="sorting-options">
+        <label for="sort-by">Sort By:</label>
+        <select id="sort-by">
+          <option value="price-low">Price Low to High</option>
+          <option value="price-high">Price High to Low</option>
+          <option value="year">Year</option>
+        </select>
+      </div>
+
+      <div class="car-listings">
+        <div class="car-card">
+          <img src="static/images/car1.jpg" alt="Car 1">
+          <h3>Car 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a href="carDetail.html">View Details</a>
+        </div>
+
+        <div class="car-card">
+          <img src="static/images/car2.jpg" alt="Car 2">
+          <h3>Car 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a href="#">View Details</a>
+        </div>
+
+        <!-- Add more car cards here -->
+
+      </div>
+
+      <div class="pagination">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Car Listings. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

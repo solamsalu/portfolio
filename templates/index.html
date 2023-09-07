@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Rental Company</title>
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('carListing')}}"> Car listings</a></li>
+        <li><a href="#">Cars</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="{{ url_for('contact')}}">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to Car Rental Company</h1>
+      <p>Find the perfect car for your next adventure!</p>
+      <form class="search-form">
+        <input type="text" placeholder="Enter Location">
+        <input type="date" placeholder="Pickup Date">
+        <input type="date" placeholder="Return Date">
+        <select>
+          <option>Car Type</option>
+          <option>Sedan</option>
+          <option>SUV</option>
+          <option>Convertible</option>
+          <option>Van</option>
+        </select>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="featured-cars">
+    <div class="container">
+      <h2>Featured Cars</h2>
+      <div class="car-card">
+        <img src="static/images/car1.jpg" alt="Car 1">
+        <h3>Car 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#" class="btn">Rent Now</a>
+      </div>
+      <div class="car-card">
+        <img src="static/images/car2.jpg" alt="Car 2">
+        <h3>Car 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#" class="btn">Rent Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>Key Features and Benefits</h2>
+      <div class="feature">
+        <img src="feature1-icon.png" alt="Feature 1">
+        <h3>Competitive Pricing</h3>
+        <p>Get the best rental rates on the market.</p>
+      </div>
+      <div class="feature">
+        <img src="feature2-icon.png" alt="Feature 2">
+        <h3>24/7 Customer Support</h3>
+        <p>We're here to assist you anytime, day or night.</p>
+      </div>
+      <div class="feature">
+        <img src="feature3-icon.png" alt="Feature 3">
+        <h3>Wide Range of Cars</h3>
+        <p>Choose from our diverse selection of vehicles.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Car Rental Company. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

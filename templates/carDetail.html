@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="styles.css">
+   <style>
+      .container1 {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      .car-details {
+         display: flex;
+         gap: 20px;
+         max-width: 800px;
+         margin-top: 50px;
+      }
+
+      .car-images {
+         flex-basis: 40%;
+      }
+
+      .car-images img {
+         max-width: 100%;
+         height: auto;
+      }
+
+      .car-info {
+         flex-basis: 60%;
+      }
+
+      .car-info h2 {
+         margin-top: 0;
+      }
+
+      .car-info p {
+         margin: 5px 0;
+      }
+
+      .cta-button {
+         display: inline-block;
+         padding: 10px 20px;
+         background-color: #007bff;
+         color: #fff;
+         text-decoration: none;
+         border-radius: 4px;
+         transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+         background-color: #0062cc;
+      }
+   </style>
+   <title>Car Details</title>
+</head>
+
+<body>
+   <header>
+      <div class="container">
+         <h1>Car Listings</h1>
+         <nav>
+            <ul>
+               <li><a href="index.html">Home</a></li>
+               <li><a href="carListing.html">Back to Listings</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Contact</a></li>
+            </ul>
+         </nav>
+      </div>
+   </header>
+
+   <main>
+      <div class="container">
+         <div class="car-details">
+            <div class="car-images">
+               <img src="car1.jpg" alt="Car 1">
+               <img src="car2.jpg" alt="Car 2">
+               <!-- Add more images if available -->
+            </div>
+
+            <div class="car-info">
+               <h2>Car Model</h2>
+               <p>Make: <span id="car-make"></span></p>
+               <p>Year: <span id="car-year"></span></p>
+               <p>Color: <span id="car-color"></span></p>
+               <p>Mileage: <span id="car-mileage"></span></p>
+               <p>Transmission: <span id="car-transmission"></span></p>
+               <p>Engine: <span id="car-engine"></span></p>
+               <p>Rental Rate: <span id="car-rental-rate"></span></p>
+
+               <h2>Additional Features</h2>
+               <ul id="car-features">
+                  <li>Feature 1</li>
+                  <li>Feature 2</li>
+                  <li>Feature 3</li>
+                  <!-- Features will be dynamically added here -->
+               </ul>
+
+               <a href="#" class="cta-button">Rent Now</a>
+            </div>
+         </div>
+      </div>
+   </main>
+
+   <footer>
+      <div class="container">
+         <p>&copy; 2023 Car Listings. All rights reserved.</p>
+      </div>
+   </footer>

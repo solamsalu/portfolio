@@ -1,0 +1,31 @@
+<h1>Create Reservation</h1>
+
+<form action="/reservations/create" method="post">
+  <label for="car_id">Car:</label>
+  <select id="car_id" name="car_id" required>
+    <!-- Populate the dropdown with available cars -->
+    {% for car in available_cars %}
+    <option value="{{ car.car_id }}">{{ car.make }} {{ car.model }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date" required>
+
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date" required>
+
+  <label for="pickup_location">Pickup Location:</label>
+  <input type="text" id="pickup_location" name="pickup_location" required>
+
+  <label for="return_location">Return Location:</label>
+  <input type="text" id="return_location" name="return_location" required>
+
+  <label for="insurance_option">Insurance Option:</label>
+  <input type="text" id="insurance_option" name="insurance_option">
+
+  <label for="additional_notes">Additional Notes:</label>
+  <textarea id="additional_notes" name="additional_notes"></textarea>
+
+  <input type="submit" value="Create Reservation">
+</form>

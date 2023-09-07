@@ -1,0 +1,27 @@
+<h1>Edit Payment</h1>
+
+<form action="/payments/edit/{{ payment.payment_id }}" method="post">
+  <label for="reservation_id">Reservation ID:</label>
+  <input type="text" id="reservation_id" name="reservation_id" value="{{ payment.reservation_id }}" required>
+
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" step="0.01" value="{{ payment.amount }}" required>
+
+  <label for="payment_date">Payment Date:</label>
+  <input type="date" id="payment_date" name="payment_date" value="{{ payment.payment_date }}" required>
+
+  <label for="payment_method">Payment Method:</label>
+  <input type="text" id="payment_method" name="payment_method" value="{{ payment.payment_method }}" required>
+
+  <label for="transaction_id">Transaction ID:</label>
+  <input type="text" id="transaction_id" name="transaction_id" value="{{ payment.transaction_id }}">
+
+  <label for="status">Status:</label>
+  <input type="text" id="status" name="status" value="{{ payment.status }}">
+
+  <!-- Include other payment-related fields as needed -->
+
+  <input type="submit" value="Update Payment">
+</form>
+
+<a href="/payments">Back to Payments</a>
