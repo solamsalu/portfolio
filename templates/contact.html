@@ -1,153 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="styles.css">
-   <title>Contact and Support</title>
-</head>
+{% block title %}Contact{% endblock %}
 
-<body>
-   <header>
+{% block content %}
+<main>
+   <section id="testimonials" class="bg-light py-5">
       <div class="container">
-         <h1>Contact and Support</h1>
-         <nav>
-            <ul>
-               <li><a href="index.html">Home</a></li>
-               <li><a href="carListing.html"> Car listings</a></li>
-               <li><a href="#">About</a></li>
-               <li><a href="#">Contact</a></li>
-            </ul>
-         </nav>
+         <h2 class="text-center mb-4">Contact and Support</h2>
+         <div class="card mx-auto" style="width: 48rem">
+            <div class="card-body">
+               <p>Email: info@yourcompany.com</p>
+               <p>Phone: +1 123-456-7890</p>
+               <p>Address: 123 Main Street, City, Country</p>
+            </div>
+         </div>
       </div>
-   </header>
-
-   <main>
-      <style>
-         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-         }
-
-         h2 {
-            margin-top: 30px;
-         }
-
-         form {
-            margin-bottom: 40px;
-         }
-
-         label {
-            display: block;
-            margin-top: 10px;
-         }
-
-         input,
-         textarea {
-            margin-top: 5px;
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-         }
-
-         button {
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: var(--secondary-color);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-         }
-      </style>
-      <h2>Contact Information</h2>
-      <p>Email: info@yourcompany.com</p>
-      <p>Phone: +1 123-456-7890</p>
-      <p>Address: 123 Main Street, City, Country</p>
-
-      <h2>Customer Support</h2>
-      <form id="customer-support-form">
-         <label for="customer-name">Name:</label>
-         <input type="text" id="customer-name" required>
-
-         <label for="customer-email">Email:</label>
-         <input type="email" id="customer-email" required>
-
-         <label for="customer-subject">Subject:</label>
-         <input type="text" id="customer-subject" required>
-
-         <label for="customer-message">Message:</label>
-         <textarea id="customer-message" required></textarea>
-
-         <button type="submit" class="btn">Submit</button>
-      </form>
-
-      <h2>Car Owner Support</h2>
-      <form id="car-owner-support-form">
-         <label for="owner-name">Name:</label>
-         <input type="text" id="owner-name" required>
-
-         <label for="owner-email">Email:</label>
-         <input type="email" id="owner-email" required>
-
-         <label for="owner-subject">Subject:</label>
-         <input type="text" id="owner-subject" required>
-
-         <label for="owner-message">Message:</label>
-         <textarea id="owner-message" required></textarea>
-
-         <button type="submit" class="btn">Submit</button>
-      </form>
-
-      <script>
-         // Handling customer support form submission
-         const customerSupportForm = document.getElementById('customer-support-form');
-         customerSupportForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            // Retrieve form data
-            const name = document.getElementById('customer-name').value;
-            const email = document.getElementById('customer-email').value;
-            const subject = document.getElementById('customer-subject').value;
-            const message = document.getElementById('customer-message').value;
-
-            // Perform necessary actions with the form data (e.g., send an email, process in the backend)
-            // ...
-
-            // Reset the form
-            customerSupportForm.reset();
-         });
-
-         // Handling car owner support form submission
-         const carOwnerSupportForm = document.getElementById('car-owner-support-form');
-         carOwnerSupportForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            // Retrieve form data
-            const name = document.getElementById('owner-name').value;
-            const email = document.getElementById('owner-email').value;
-            const subject = document.getElementById('owner-subject').value;
-            const message = document.getElementById('owner-message').value;
-
-            // Perform necessary actions with the form data (e.g., send an email, process in the backend)
-            // ...
-
-            // Reset the form
-            carOwnerSupportForm.reset();
-         });
-      </script>
-   </main>
-
-   <footer>
+   </section>
+   <section id="testimonials" class="bg-light py-5">
       <div class="container">
-         <p>&copy; 2023 Car Listings. All rights reserved.</p>
+         <h2 class="text-center mb-4">Customer Support</h2>
+         <div class="card mx-auto" style="width: 48rem">
+            <div class="card-body">
+               <form id="customer-support-form">
+                  <label for="customer-name">Name:</label>
+                  <input type="text" id="customer-name" required><br><br>
+
+                  <label for="customer-email">Email:</label>
+                  <input type="email" id="customer-email" required><br><br>
+
+                  <label for="customer-subject">Subject:</label>
+                  <input type="text" id="customer-subject" required><br><br>
+
+                  <label for="customer-message">Message:</label>
+                  <textarea id="customer-message" required></textarea><br><br>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+            </div>
+         </div>
       </div>
-   </footer>
+   </section>
 
-</body>
+   <section id="testimonials" class="bg-light py-5">
+      <div class="container">
+         <h2 class="text-center mb-4">Car Owner Support</h2>
+         <div class="card mx-auto" style="width: 38rem">
+            <div class="card-body">
 
-</html>
+               <form id="car-owner-support-form">
+                  <label for="owner-name">Name:</label>
+                  <input type="text" id="owner-name" required>
+
+                  <label for="owner-email">Email:</label>
+                  <input type="email" id="owner-email" required>
+
+                  <label for="owner-subject">Subject:</label>
+                  <input type="text" id="owner-subject" required>
+
+                  <label for="owner-message">Message:</label>
+                  <textarea id="owner-message" required></textarea>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+      // Handling customer support form submission
+      const customerSupportForm = document.getElementById('customer-support-form');
+      customerSupportForm.addEventListener('submit', (event) => {
+         event.preventDefault();
+
+         // Retrieve form data
+         const name = document.getElementById('customer-name').value;
+         const email = document.getElementById('customer-email').value;
+         const subject = document.getElementById('customer-subject').value;
+         const message = document.getElementById('customer-message').value;
+
+         // Perform necessary actions with the form data (e.g., send an email, process in the backend)
+         // ...
+
+         // Reset the form
+         customerSupportForm.reset();
+      });
+
+      // Handling car owner support form submission
+      const carOwnerSupportForm = document.getElementById('car-owner-support-form');
+      carOwnerSupportForm.addEventListener('submit', (event) => {
+         event.preventDefault();
+
+         // Retrieve form data
+         const name = document.getElementById('owner-name').value;
+         const email = document.getElementById('owner-email').value;
+         const subject = document.getElementById('owner-subject').value;
+         const message = document.getElementById('owner-message').value;
+
+         // Perform necessary actions with the form data (e.g., send an email, process in the backend)
+         // ...
+
+         // Reset the form
+         carOwnerSupportForm.reset();
+      });
+   </script>
+
+</main>
+
+
+{% endblock %}

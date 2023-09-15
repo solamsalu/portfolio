@@ -1,294 +1,87 @@
-/* Add the following styles to your styles.css file */
-
-/* Colors */
-
-:root {
-  --primary-color: #20a7a0; /* Dark blue */
-  --secondary-color:  #20A77C; /* Blue */
-  --accent-color: #4BCF8C; /* Orange */
-  --background-color: #F0F8F8; /* Light gray */
-}
-
-/* :root {
-  --primary-color: #20a7a0; /* Dark blue */
-  --secondary-color: #A7207C; /* Blue */
-  --accent-color: #FF4CBF; /* Orange */
-  --background-color: #F8F0F8; /* Light gray */
-}  */
-
-/* :root {
-  --primary-color: #20a7a0; /* Dark blue */
-  --secondary-color: #3498db; /* Blue */
-  --accent-color: #e67e22; /* Orange */
-  --background-color: #f1f1f1; /* Light gray */
-} */
-/* Typography */
 body {
-  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #333399;
+  color: #cfcfcf;
+  font-family: Arial, sans-serif;
 }
 
-h1, h2, h3 {
-  color: var(--primary-color);
-}
-
-/* Header */
 header {
-  background-color: var(--primary-color);
+  background-color: #333399;
   padding: 20px;
 }
 
-header a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
+ .navbar-brand {
+  color: #c0c0c0;
+  font-size: 24px;
 }
 
-/* Hero */
+.slogan {
+  color: #c0c0c0;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.navbar-nav {
+   --bs-nav-link-color: #c0c0c0;
+ }
+
+.navbar-light .navbar-nav .nav-link {
+  color: #c0c0c0;
+  font-size: 18px;
+}
+
+.dropdown-menu {
+  background-color: #333399;
+}
+
+.dropdown-item {
+  color: #c0c0c0;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #c0c0c0;
+  color: #333399;
+  border-color: #c0c0c0;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
 .hero {
-  background-image: url(../images/bg1.jpg);
+  background-image: url("../images/bg1.jpg");
   background-size: cover;
-  text-align: center;
-  padding: 100px;
-  color: #fff;
+  background-position: center;
+  padding: 100px 0;
 }
 
 .hero h1 {
   font-size: 48px;
   margin-bottom: 20px;
+  color: #c0c0c0;
 }
 
-/* Search Form */
-.search-form input,
-.search-form select {
-  padding: 10px;
-  margin: 5px;
-  width: 250px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.search-form button {
-  padding: 10px 20px;
-  margin: 5px;
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Featured Cars */
-.featured-cars h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.car-card {
-  display: inline-block;
-  width: 300px;
-  margin: 20px;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.car-card:hover {
-  transform: translateY(-5px);
-}
-
-.car-card img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-
-.car-card h3 {
+.hero p {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  color: #c0c0c0;
 }
 
-.car-card p {
-  color: #777;
-  margin-bottom: 20px;
+.form-control {
+  height: 50px;
+  font-size: 16px;
+  background-color: #c0c0c0;
+  color: #333399;
+  border-color: #c0c0c0;
 }
 
-.car-card a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--accent-color);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+.input-group-text {
+  background-color: #c0c0c0;
+  color: #333399;
+  border-color: #c0c0c0;
 }
 
-.car-card a:hover {
-  background-color: #d35400; /* Darker orange */
-}
-
-/* Features */
-.features h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.feature img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-}
-
-.feature h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.feature p {
-  color: #777;
-  margin-bottom: 20px;
-}
-
-/* Footer */
-footer {
-  background-color: var(--primary-color);
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-}
-
-footer p {
-  font-size: 14px;
-}
-
-/* Color Palette Selector */
-.color-palette-selector {
-  margin-bottom: 20px;
-}
-
-.color-palette-selector label {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.color-palette-selector input[type="radio"] {
-  display: none;
-}
-
-.color-palette-selector .palette-option {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.color-palette-selector .palette-option:hover {
-  transform: scale(1.1);
-}
-
-.color-palette-selector .palette-option.selected {
-  border-width: 4px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .search-form input,
-  .search-form select {
-    width: 100%;
-  }
-
-  .search-form button {
-    margin-top: 10px;
-    width: 100%;
-  }
-}
-
-/* CSS Styles */
-
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Header Styles */
-header {
-  display: flex;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-}
-
-header h1 {
-  margin: 0;
-}
-
-/* Navigation Styles */
-nav {
-  margin-top: 20px;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  display: inline-block;
-  margin-left: 20px;
-}
-
-nav ul li:first-child {
-  margin-left: 0;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  padding: 5px;
-}
-
-/* Main Content Styles */
-main {
-  padding: 20px;
-}
-
-/* Footer Styles */
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 24px;
-  }
-
-  nav ul li {
-    display: block;
-    margin-bottom: 10px;
-  }
+.datepicker {
+  background-color: #c0c0c0;
+  color: #333399;
+  border-color: #c0c0c0;
+  padding-right: 30px;
 }

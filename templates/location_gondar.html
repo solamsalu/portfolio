@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Gondar{% endblock %}
+
+{% block content %}
+
+<main>
+   <section id="testimonials" class="bg-light py-5">
+      <div class="container">
+         <h2 class="text-center mb-4">Contact and Support</h2>
+         <div class="card mx-auto" style="width: 48rem">
+            <div class="card-body">
+               <p>Email: info@yourcompany.com</p>
+               <p>Phone: +1 123-456-7890</p>
+               <p>Address: 123 Main Street, City, Country</p>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div id="map"></div>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ0pQ2WS9HFFutOCxTeSuGmjL8hc1HFEM&callback=initMap"
+      async defer></script>
+
+
+   <!-- Add your custom JavaScript code -->
+   <script>
+      // Initialize and display the map
+      function initMap() {
+         // Coordinates for Gondar city
+         var gondarLocation = { lat: 12.6030, lng: 37.4521 };
+
+         // Create a map centered on Gondar city
+         var map = new google.maps.Map(document.getElementById('map'), {
+            center: gondarLocation,
+            zoom: 15
+         });
+
+         // Add a marker for Gondar city
+         var marker = new google.maps.Marker({
+            position: gondarLocation,
+            map: map,
+            title: 'Gondar City'
+         });
+      }
+   </script>
+
+   {% endblock %}
