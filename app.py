@@ -12,7 +12,7 @@ from flask import Flask, render_template, request, redirect
 #     return post
 
 
-# app = Flask(__name__)
+app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
 # db = SQLAlchemy(app)
 
