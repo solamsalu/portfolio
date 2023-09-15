@@ -174,10 +174,10 @@ def admin():
 #     return render_template('reservation_form.html')
 
 
-@app.route('/customers')
-def customers():
-    customers = Customer.query.all()
-    return render_template('customers.html', customers=customers)
+# @app.route('/customers')
+# def customers():
+#     customers = Customer.query.all()
+#     return render_template('customers.html', customers=customers)
 
 
 # @app.route('/customers/add', methods=['GET', 'POST'])
@@ -222,10 +222,10 @@ def customers():
 #     return redirect('/customers')
 
 
-@app.route('/cars')
-def cars():
-    cars = CarList.query.all()
-    return render_template('car.html', cars=cars)
+# @app.route('/cars')
+# def cars():
+#     cars = CarList.query.all()
+#     return render_template('car.html', cars=cars)
 
 
 # @app.route('/cars/add', methods=['GET', 'POST'])
