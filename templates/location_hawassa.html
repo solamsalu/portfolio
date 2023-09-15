@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Hawassa{% endblock %}
+
+{% block content %}
+
+   <main>
+      <section id="testimonials" class="bg-light py-5">
+         <div class="container">
+            <h2 class="text-center mb-4">Contact and Support</h2>
+            <div class="card mx-auto" style="width: 48rem">
+               <div class="card-body">
+                  <p>Email: info@yourcompany.com</p>
+                  <p>Phone: +1 123-456-7890</p>
+                  <p>Address: 123 Main Street, City, Country</p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <div id="map"></div>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ0pQ2WS9HFFutOCxTeSuGmjL8hc1HFEM&callback=initMap"
+         async defer></script>
+
+      <!-- Add your custom JavaScript code -->
+      <script>
+         // Initialize and display the map
+         function initMap() {
+            // Coordinates for Hawassa city
+            var hawassaLocation = { lat: 7.0640, lng: 38.4763 };
+
+            // Create a map centered on Hawassa city
+            var map = new google.maps.Map(document.getElementById('map'), {
+               center: hawassaLocation,
+               zoom: 15
+            });
+
+            // Add a marker for Hawassa city
+            var marker = new google.maps.Marker({
+               position: hawassaLocation,
+               map: map,
+               title: 'Hawassa City'
+            });
+         }
+      </script>
+
+      {% endblock %}

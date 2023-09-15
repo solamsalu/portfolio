@@ -92,14 +92,64 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/carListing')
-def carListing():
+@app.route('/all_cars')
+def all_cars():
     return render_template('carListing.html')
+
+
+@app.route('/suvs')
+def suvs():
+    return render_template('suvs.html')
+
+
+@app.route('/sedans')
+def sedans():
+    return render_template('sedans.html')
+
+
+@app.route('/vans')
+def vans():
+    return render_template('vans.html')
+
+
+@app.route('/luxury')
+def luxury():
+    return render_template('luxury.html')
+
+
+@app.route('/addis')
+def addis():
+    return render_template('location_addis.html')
+
+
+@app.route('/dire')
+def dire():
+    return render_template('location_dire.html')
+
+
+@app.route('/hawassa')
+def hawassa():
+    return render_template('location_hawassa.html')
+
+
+@app.route('/gondar')
+def gondar():
+    return render_template('location_gondar.html')
+
+
+@app.route('/mekelle')
+def mekelle():
+    return render_template('location_mekelle.html')
 
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/admin')
+def admin():
+    return render_template('admin_login.html')
 
 
 @app.route('/reservation', methods=['GET', 'POST'])
