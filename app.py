@@ -34,6 +34,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/all_cars')
+def all_cars():
+    return render_template('carListing.html')
+
+
 @app.route('/reservation', methods=['GET', 'POST'])
 def reserve():
     if request.method == 'POST':
@@ -79,9 +84,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-# @app.route('/all_cars')
-# def all_cars():
-#     return render_template('carListing.html')
+
 
 
 # @app.route('/suvs')
