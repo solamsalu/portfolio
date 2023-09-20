@@ -38,9 +38,15 @@ def index():
 def all_cars():
     return render_template('carListing.html')
 
+@app.route('/select_car/<int:car_id>')
+def select_car(car_id):
+    # ... code to handle car selection ...
+    return redirect(url_for('reserve', car_id=car_id))
+
 
 @app.route('/reservation', methods=['GET', 'POST'])
-def reserve():
+@app.route('/reservation/<int:car_id>', methods=['GET', 'POST'])
+def reserve(car_id=None):
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -77,7 +83,7 @@ def reserve():
 
         return redirect('/')
 
-    return render_template('reservation_form.html')
+    return render_template('reservation_form.html', car_id=car_id)
 
 
 @app.route('/suvs')
