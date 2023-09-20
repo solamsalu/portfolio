@@ -102,9 +102,28 @@
         <h2 class="text-center mb-4">Reservation Form</h2>
         <div class="card mx-auto" style="width: 28rem" >
           <div class="card-body">
-          <form action="/reservation" method="POST">
-            <label for="customer_id">Customer ID:</label>
-            <input type="text" name="customer_id" required><br><br>
+           {% with messages = get_flashed_messages() %}
+           {% if messages %}
+           <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+         {% endif %}
+         {% endwith %}
+
+         <form action="/reservation" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br><br>
+
+             <label for="email">Email:</label>
+            <input type="email" name="email" required><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" name="phone" required><br><br>
+
+            <label for="address">Address:</label>
+            <input type="text" name="address" required><br><br>
 
             <label for="car_id">Car ID:</label>
             <input type="text" name="car_id" required><br><br>
@@ -115,8 +134,8 @@
             <label for="end_date">End Date:</label>
             <input type="date" name="end_date" required><br><br>
 
-            <input type="submit" class="btn btn-primary" value="Submit">
-          </form>
+            <input type="submit" value="Submit">
+         </form>
         </div>
       </div>
     </div>
