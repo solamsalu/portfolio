@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.exc import SQLAlchemyError
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/mydatabase'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
 app.config['SECRET_KEY'] = 'your-secret-key'  # replace with your secret key
 
 db = SQLAlchemy(app)
