@@ -1,98 +1,82 @@
-#from flask import Flask, render_template
-# from flask_sqlalchemy import SQLAlchemy
-
-
-# def get_post(post_id):
-#     conn = get_db_connection()
-#     post = conn.execute('SELECT * FROM posts WHERE id = ?',
-#                         (post_id,)).fetchone()
-#     conn.close()
-#     if post is None:
-#         abort(404)
-#     return post
-
-
-#app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
-# db = SQLAlchemy(app)
-
-
-# class Customer(db.Model):
-#     __tablename__ = 'customer'
-
-#     customer_id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     email = db.Column(db.String(100), nullable=False)
-#     phone = db.Column(db.String(20), nullable=False)
-#     address = db.Column(db.String(255), nullable=False)
-
-
-# class Payment(db.Model):
-#     payment_id = db.Column(db.Integer, primary_key=True)
-#     reservation_id = db.Column(db.Integer, db.ForeignKey(
-#         'reservation.reservation_id'), nullable=False)
-#     amount = db.Column(db.Float, nullable=False)
-#     payment_date = db.Column(db.Date, nullable=False)
-#     # Add additional payment-related fields as needed
-
-
-# class Reservation(db.Model):
-#     __tablename__ = 'reservation'
-
-#     reservation_id = db.Column(db.Integer, primary_key=True)
-#     car_id = db.Column(db.Integer, db.ForeignKey(
-#         'car_list.car_id'), nullable=False)
-#     customer_id = db.Column(db.Integer, db.ForeignKey(
-#         'customer.customer_id'), nullable=False)
-#     start_date = db.Column(db.Date, nullable=False)
-#     end_date = db.Column(db.Date, nullable=False)
-#     # pickup_location = db.Column(db.String(100), nullable=False)
-#     # return_location = db.Column(db.String(100), nullable=False)
-#     # total_cost = db.Column(db.Float, nullable=False)
-#     # insurance_option = db.Column(db.String(50))
-#     # is_completed = db.Column(db.Boolean, default=False)
-#     # additional_notes = db.Column(db.Text)
-#     # discount = db.Column(db.Float, default=0)
-
-#     # Define the relationships
-#     car = db.relationship('CarList', backref='reservations')
-#     customer = db.relationship('Customer', backref='reservations')
-
-
-# class CarList(db.Model):
-#     __tablename__ = 'car_list'
-
-#     car_id = db.Column(db.Integer, primary_key=True)
-#     make = db.Column(db.String(50), nullable=False)
-#     model = db.Column(db.String(50), nullable=False)
-#     year = db.Column(db.Integer, nullable=False)
-#     daily_rate = db.Column(db.Float, nullable=False)
-#     # mileage = db.Column(db.Integer)
-#     # color = db.Column(db.String(20))
-#     # transmission = db.Column(db.String(20))
-#     # fuel_type = db.Column(db.String(20))
-#     # engine_capacity = db.Column(db.Float)
-#     # description = db.Column(db.Text)
-#     # image_url = db.Column(db.String(200))
-#     # is_available = db.Column(db.Boolean, default=True)
-#     # location = db.Column(db.String(100))
-#     # license_plate = db.Column(db.String(20))
-#     # vehicle_identification_number = db.Column(db.String(50))
-#     # seating_capacity = db.Column(db.Integer)
-#     # body_type = db.Column(db.String(50))
-#     # drive_type = db.Column(db.String(50))
-#     # fuel_consumption = db.Column(db.Float)
-#     # features = db.Column(db.Text)
-#     # insurance_information = db.Column(db.Text)
-#     # maintenance_records = db.Column(db.Text)
-
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, flash
+from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy.exc import SQLAlchemyError
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/mydatabase'
+app.config['SECRET_KEY'] = 'your-secret-key'  # replace with your secret key
+
+db = SQLAlchemy(app)
+
+
+class Customer(db.Model):
+    __tablename__ = 'Customer'
+    customer_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+
+
+class Reservation(db.Model):
+    __tablename__ = 'Reservation'
+    reservation_id = db.Column(db.Integer, primary_key=True)
+    car_id = db.Column(db.Integer, nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey(
+        'Customer.customer_id'), nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
+    customer = db.relationship('Customer', backref='reservations')
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/reservation', methods=['GET', 'POST'])
+def reserve():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        address = request.form.get('address')
+        car_id = int(request.form.get('car_id'))
+        start_date = request.form.get('start_date')
+        end_date = request.form.get('end_date')
+
+        customer = Customer(name=name, email=email,
+                            phone=phone, address=address)
+        db.session.add(customer)
+
+        try:
+            db.session.commit()
+            flash('Customer created successfully')
+
+            reservation = Reservation(customer_id=customer.customer_id,
+                                      car_id=car_id,
+                                      start_date=start_date,
+                                      end_date=end_date)
+            db.session.add(reservation)
+            db.session.commit()
+
+            flash('Reservation created successfully')
+
+        except SQLAlchemyError as e:
+            flash('An error occurred while creating the reservation: ' + str(e))
+            db.session.rollback()
+
+        finally:
+            # Close the session
+            db.session.close()
+
+        return redirect('/')
+
+    return render_template('reservation_form.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 # @app.route('/all_cars')
