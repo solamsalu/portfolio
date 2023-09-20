@@ -58,7 +58,7 @@ def select_car(car_id):
 
 # @app.route('/reservation', methods=['GET', 'POST'])
 @app.route('/reservation/<int:car_id>', methods=['GET', 'POST'])
-def reserve(car_id=None):
+def reserve(car_id):
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
