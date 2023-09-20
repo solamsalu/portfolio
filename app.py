@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+#from flask import Flask, render_template
 # from flask_sqlalchemy import SQLAlchemy
 
 
@@ -12,7 +12,7 @@ from flask import Flask, render_template
 #     return post
 
 
-app = Flask(__name__)
+#app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
 # db = SQLAlchemy(app)
 
@@ -86,6 +86,9 @@ app = Flask(__name__)
 #     # insurance_information = db.Column(db.Text)
 #     # maintenance_records = db.Column(db.Text)
 
+from flask import Flask, render_template
+
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -373,5 +376,5 @@ def index():
 
 #     return render_template('create_reservation.html', available_cars=available_cars)
 
-    if __name__ == '__main__':
-        app.run()
+#    if __name__ == '__main__':
+ #       app.run()
