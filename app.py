@@ -8,7 +8,15 @@ app.config['SECRET_KEY'] = 'your-secret-key'  # replace with your secret key
 
 db = SQLAlchemy(app)
 
-
+class CarList(db.Model):
+    __tablename__ = 'CarList'
+    car_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    make = db.Column(db.String(50), nullable=False)
+    model = db.Column(db.String(50), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    daily_rate = db.Column(db.Float, nullable=False)
+    image = db.Column(db.String(255))
+    
 class Customer(db.Model):
     __tablename__ = 'Customer'
     customer_id = db.Column(db.Integer, primary_key=True)
@@ -28,7 +36,6 @@ class Reservation(db.Model):
     end_date = db.Column(db.Date, nullable=False)
     customer = db.relationship('Customer', backref='reservations')
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -40,8 +47,13 @@ def all_cars():
 
 @app.route('/select_car/<int:car_id>')
 def select_car(car_id):
+    # Query the database for a car with the given car_id
+    car = CarList.query.get(car_id)
+    if car is None:
+        # If no car with this ID exists, return a 404 error.
+        abort(404)
     # ... code to handle car selection ...
-    return redirect(url_for('reserve', car_id=car_id))
+    return redirect(url_for('reserve', car_id=car.car_id))
 
 
 @app.route('/reservation', methods=['GET', 'POST'])
