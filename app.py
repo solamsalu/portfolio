@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.exc import SQLAlchemyError
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired, Email
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12192129s@localhost/selamdb'
@@ -8,6 +12,12 @@ app.config['SECRET_KEY'] = 'your-secret-key'  # replace with your secret key
 
 db = SQLAlchemy(app)
 
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+    
 class CarList(db.Model):
     __tablename__ = 'CarList'
     car_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -147,9 +157,25 @@ def mekelle():
 def contact():
     return render_template('contact.html')
 
-@app.route('/admin')
+# @app.route('/admin')
+# def admin():
+#     return render_template('admin_login.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def admin():
-    return render_template('admin_login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        # retrieve the user from your database
+        user = User.query.filter_by(email=form.email.data).first()
+
+        # check if the user exists and the password is correct
+        if user is not None and check_password_hash(user.password, form.password.data):
+            # log the user in and remember them if the "Remember Me" checkbox is checked
+            login_user(user, remember=form.remember_me.data)
+            return redirect(url_for('admin_dashboard.html'))  # replace with your dashboard route
+
+    return render_template('admin_login.html', form=form)
+
 
 
 if __name__ == '__main__':
