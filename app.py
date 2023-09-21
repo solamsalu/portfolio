@@ -169,7 +169,7 @@ def contact():
 #     return render_template('admin_login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
-def admin():
+def login():
     form = LoginForm()
     if form.validate_on_submit():
         # retrieve the user from your database
