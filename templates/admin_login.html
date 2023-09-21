@@ -5,7 +5,7 @@ Admin Login
 {% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('login') }}">
+<form method="POST" action="{{ url_for('admin') }}">
     {{ form.hidden_tag() }}
     <div>
         <img src="{{ url_for('static', filename='images/car43.jpg') }}" alt="Your Image">
