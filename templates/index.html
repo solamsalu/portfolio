@@ -3,6 +3,22 @@
 {% block title %}All Cars{% endblock %}
 
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('form').on('submit', function(e) {
+        e.preventDefault(); // prevent the default form submission behavior
+
+        var carType = $('.form-select').val(); // get the selected car type
+
+        if (carType) {
+            window.location.href = "{{ url_for('" + carType + "') }}"; // redirect to the appropriate page
+        } else {
+            alert('Please select a car type.'); // show an alert if no car type is selected
+        }
+    });
+});
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -67,330 +83,19 @@ $( function() {
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
             </div>
             <div class="input-group mb-3">
-    <select class="form-select" aria-label="Select Car">
-        <option selected disabled>Select Car</option>
-        <option value="suv">SUV</option>
-        <option value="sedan">Sedan</option>
-        <option value="van">Van</option>
-        <option value="luxury">Luxury</option>
-    </select>
-    <span class="input-group-text"><i class="fas fa-car"></i></span>
-</div>
+              <select class="form-select" aria-label="Select Car">
+                <option selected disabled>Select Car</option>
+                <option value="suv">SUV</option>
+                <option value="sedan">Sedan</option>
+                <option value="van">Van</option>
+                <option value="luxury">Luxury</option>
+              </select>
+              <span class="input-group-text"><i class="fas fa-car"></i></span>
+            </div>
             <button type="submit" class="btn btn-primary">Start Adventure</button>
           </form>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="featured-cars py-5">
-    <div class="container">
-      <!-- Featured cars heading -->
-      <h2 class="text-center mb-4">Featured Cars</h2>
-      <!-- Featured cars cards -->
-      <div class="row">
-        <!-- Featured car card 1 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <!-- Car image -->
-            <img src="static/images/car23.jpg" class="card-img-top" alt="Car Image">
-            <!-- Car details -->
-            <div class="card-body d-flex flex-column justify-content-between">
-              <!-- Car title and rating -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car title -->
-                <h5 class="card-title">Toyota Corolla</h5>
-                <!-- Car rating -->
-                <span><i class="far fa-star"></i> 4.5/5</span>
-              </div>
-              <!-- Car description -->
-              <p class="card-text">A reliable and fuel-efficient sedan that can comfortably fit up to 5
-                passengers and 2 large suitcases.</p>
-              <!-- Car features -->
-              <ul class="list-inline mb-3">
-                <!-- Car feature 1 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Automatic</li>
-                <!-- Car feature 2 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Air Conditioning</li>
-                <!-- Car feature 3 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Bluetooth</li>
-              </ul>
-              <!-- Car price and availability -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car price -->
-                <span><strong>$25/day</strong></span>
-                <!-- Car availability -->
-                <span><i class="far fa-clock"></i> Available Now</span>
-              </div>
-              <!-- Car buttons -->
-              <div class="d-flex align-items-center justify-content-between">
-                <!-- View details button -->
-                <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
-                <!-- Book now button -->
-                <a href="{{ url_for('reserve', car_id=23)}}" class="btn btn-primary btn-sm">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Featured car card 2 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <!-- Car image -->
-            <img src="static/images/car12.jpg" class="card-img-top" alt="Car Image">
-            <!-- Car details -->
-            <div class="card-body d-flex flex-column justify-content-between">
-              <!-- Car title and rating -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car title -->
-                <h5 class="card-title">Ford Escape</h5>
-                <!-- Car rating -->
-                <span><i class="far fa-star"></i> 4.7/5</span>
-              </div>
-              <!-- Car description -->
-              <p class="card-text">A spacious and versatile SUV that can accommodate up to 7 passengers and 4
-                large suitcases.</p>
-              <!-- Car features -->
-              <ul class="list-inline mb-3">
-                <!-- Car feature 1 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Automatic</li>
-                <!-- Car feature 2 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Air Conditioning</li>
-                <!-- Car feature 3 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Navigation</li>
-              </ul>
-              <!-- Car price and availability -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car price -->
-                <span><strong>$35/day</strong></span>
-                <!-- Car availability -->
-                <span><i class="far fa-clock"></i> Available Now</span>
-              </div>
-              <!-- Car buttons -->
-              <div class="d-flex align-items-center justify-content-between">
-                <!-- View details button -->
-                <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
-                <!-- Book now button -->
-                <a href="{{ url_for('reserve', car_id=12)}}" class="btn btn-primary btn-sm">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Featured car card 3 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <!-- Car image -->
-            <img src="static/images/car44.jpg" class="card-img-top" alt="Car Image">
-            <!-- Car details -->
-            <div class="card-body d-flex flex-column justify-content-between">
-              <!-- Car title and rating -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car title -->
-                <h5 class="card-title">BMW 5 Series</h5>
-                <!-- Car rating -->
-                <span><i class="far fa-star"></i> 4.9/5</span>
-              </div>
-              <!-- Car description -->
-              <p class="card-text">A luxurious and powerful sedan that offers a smooth driving experience with
-                advanced features.</p>
-              <!-- Car features -->
-              <ul class="list-inline mb-3">
-                <!-- Car feature 1 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Automatic</li>
-                <!-- Car feature 2 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Leather Seats</li>
-                <!-- Car feature 3 -->
-                <li class="list-inline-item"><i class="far fa-check-circle"></i> Sunroof</li>
-              </ul>
-              <!-- Car price and availability -->
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <!-- Car price -->
-                <span><strong>$50/day</strong></span>
-                <!-- Car availability -->
-                <span><i class="far fa-clock"></i> Available Now</span>
-              </div>
-              <!-- Car buttons -->
-              <div class="d-flex align-items-center justify-content-between">
-                <!-- View details button -->
-                <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
-                <!-- Book now button -->
-                <a href="{{ url_for('reserve', car_id=44)}}" class="btn btn-primary btn-sm">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center">
-      <a href="{{ url_for('all_cars')}}" class="btn btn-primary">View All Cars</a>
-    </div>
-  </section>
-
-  <section class="benefits-features py-5">
-    <div class="container">
-      <!-- Benefits and features heading -->
-      <h2 class="text-center mb-4">Benefits and Features</h2>
-      <!-- Benefits and features content -->
-      <div class="row">
-        <!-- Benefit or feature 1 -->
-        <div class="col-md-4 mb-4">
-          <div class="text-center">
-            <!-- Benefit or feature icon -->
-            <i class="fas fa-shield-alt fa-3x mb-3"></i>
-            <!-- Benefit or feature title -->
-            <h4 class="mb-3">Safe and Reliable</h4>
-            <!-- Benefit or feature description -->
-            <p>Our cars undergo regular maintenance and safety checks to ensure your peace of mind during your
-              journey.</p>
-          </div>
-        </div>
-        <!-- Benefit or feature 2 -->
-        <div class="col-md-4 mb-4">
-          <div class="text-center">
-            <!-- Benefit or feature icon -->
-            <i class="fas fa-car fa-3x mb-3"></i>
-            <!-- Benefit or feature title -->
-            <h4 class="mb-3">Wide Selection of Cars</h4>
-            <!-- Benefit or feature description -->
-            <p>Choose from a diverse range of cars, including sedans, SUVs, luxury vehicles, and more, to suit
-              your needs and preferences.</p>
-          </div>
-        </div>
-        <!-- Benefit or feature 3 -->
-        <div class="col-md-4 mb-4">
-          <div class="text-center">
-            <!-- Benefit or feature icon -->
-            <i class="fas fa-dollar-sign fa-3x mb-3"></i>
-            <!-- Benefit or feature title -->
-            <h4 class="mb-3">Affordable Prices</h4>
-            <!-- Benefit or feature description -->
-            <p>We offer competitive prices and flexible rental options, ensuring you get the best value for your
-              money.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
-  <!-- Testimonials section -->
-  <section id="testimonials" class="bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">What Our Customers Say</h2>
-
-      <!-- Testimonials carousel -->
-      <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
-
-        <!-- Carousel indicators -->
-        <ol class="carousel-indicators">
-          <li data-bs-target="#testimonialsCarousel" data-bs-slide-to="0" class="active"></li>
-          <li data-bs-target="#testimonialsCarousel" data-bs-slide-to="1"></li>
-          <li data-bs-target="#testimonialsCarousel" data-bs-slide-to="2"></li>
-        </ol>
-
-        <!-- Carousel inner -->
-        <div class="carousel-inner">
-
-          <!-- Carousel item 1 -->
-          <div class="carousel-item active">
-            <!-- Testimonial card -->
-            <div class="card mx-auto" style="width: 18rem;">
-              <!-- Testimonial content -->
-              <div class="card-body">
-                <!-- Testimonial text -->
-                <p class="card-text text-center"><i>"I rented a car from Car Rental Company for a week and I was
-                    very impressed with their service. The car was clean, comfortable, and in good condition.
-                    The staff was friendly and helpful. I would definitely recommend them to anyone looking
-                    for a car rental in Ethiopia."</i></p>
-                <!-- Testimonial name -->
-                <h5 class="card-title text-center">Abebe Kebede</h5>
-                <!-- Testimonial rating -->
-                <p class="text-center">
-                  <span class="star-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Carousel item 2 -->
-          <div class="carousel-item">
-            <!-- Testimonial card -->
-            <div class="card mx-auto" style="width: 18rem;">
-              <!-- Testimonial content -->
-              <div class="card-body">
-                <!-- Testimonial text -->
-                <p class="card-text text-center"><i>"Car Rental Company is the best car rental company in
-                    Ethiopia. I have rented cars from them multiple times, and each time the experience has
-                    been fantastic. The cars are always in great condition, and the staff is friendly and
-                    professional. Highly recommended!"</i></p>
-                <!-- Testimonial name -->
-                <h5 class="card-title text-center">Lalise Mekonnen</h5>
-                <!-- Testimonial rating -->
-                <p class="text-center">
-                  <span class="star-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Carousel item 3 -->
-          <div class="carousel-item">
-            <!-- Testimonial card -->
-            <div class="card mx-auto" style="width: 18rem;">
-              <!-- Testimonial content -->
-              <div class="card-body">
-                <!-- Testimonial text -->
-                <p class="card-text text-center"><i>"I had a wonderful experience renting a car from Car Rental
-                    Company. The booking process was quick and easy, and the car was exactly as advertised.
-                    The staff was helpful and provided excellent customer service. I will definitely rent from
-                    them again."</i></p>
-                <!-- Testimonial name -->
-                <h5 class="card-title text-center">Temesgen Tadesse</h5>
-                <!-- Testimonial rating -->
-                <p class="text-center">
-                  <span class="star-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Carousel controls -->
-        <a class="carousel-control-prev" href="#testimonialsCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#testimonialsCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-
-
 {% endblock %}
