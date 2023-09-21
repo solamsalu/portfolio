@@ -169,19 +169,19 @@ def contact():
 #     return render_template('admin_login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        # retrieve the user from your database
-        user = User.query.filter_by(email=form.email.data).first()
+# def login():
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         # retrieve the user from your database
+#         user = User.query.filter_by(email=form.email.data).first()
 
-        # check if the user exists and the password is correct
-        if user is not None and check_password_hash(user.password, form.password.data):
-            # log the user in and remember them if the "Remember Me" checkbox is checked
-            login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('sedans')  # replace with your dashboard route
+#         # check if the user exists and the password is correct
+#         if user is not None and check_password_hash(user.password, form.password.data):
+#             # log the user in and remember them if the "Remember Me" checkbox is checked
+#             login_user(user, remember=form.remember_me.data)
+#             return redirect(url_for('sedans')  # replace with your dashboard route
 
-    return render_template('admin_login.html', form=form)
+#     return render_template('admin_login.html', form=form)
 
 
 
