@@ -45,15 +45,15 @@ def index():
 def all_cars():
     return render_template('carListing.html')
 
-@app.route('/select_car/<int:car_id>')
-def select_car(car_id):
-    # Query the database for a car with the given car_id
-    car = CarList.query.get(car_id)
-    if car is None:
-        # If no car with this ID exists, return a 404 error.
-        abort(404)
-    # ... code to handle car selection ...
-    return redirect(url_for('reserve', car_id=car.car_id))
+# @app.route('/select_car/<int:car_id>')
+# def select_car(car_id):
+#     # Query the database for a car with the given car_id
+#     car = CarList.query.get(car_id)
+#     if car is None:
+#         # If no car with this ID exists, return a 404 error.
+#         abort(404)
+#     # ... code to handle car selection ...
+#     return redirect(url_for('reserve', car_id=car.car_id))
 
 
 # @app.route('/reservation', methods=['GET', 'POST'])
