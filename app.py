@@ -180,7 +180,9 @@ def admin():
         if user is not None and check_password_hash(user.password, form.password.data):
             # log the user in and remember them if the "Remember Me" checkbox is checked
             login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('sedans'))  # replace with your dashboard route
+            return redirect('/')  # replace with your dashboard route
+                        # return redirect(url_for('sedans'))  # replace with your dashboard route
+
 
     return render_template('admin_login.html', form=form)
 
