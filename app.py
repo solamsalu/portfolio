@@ -20,7 +20,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class User(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'login'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
