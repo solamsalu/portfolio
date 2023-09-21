@@ -6,13 +6,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-  $('.form-select').on('focus', function(){
-    $(this).css('background-color', '#ffffff'); // changes background to white when select box is clicked
-  }).on('blur', function(){
-    $(this).css('background-color', '#f8f9fa'); // changes background back to grey when clicked outside
-  });
+    $('form').on('submit', function(e) {
+        e.preventDefault(); // prevent the default form submission behavior
+
+        var carType = $('.form-select').val(); // get the selected car type
+
+        if (carType) {
+            window.location.href = "{{ url_for('" + carType + "') }}"; // redirect to the appropriate page
+        } else {
+            alert('Please select a car type.'); // show an alert if no car type is selected
+        }
+    });
 });
 </script>
+
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
