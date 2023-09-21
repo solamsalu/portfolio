@@ -56,8 +56,8 @@ def all_cars():
 #     return redirect(url_for('reserve', car_id=car.car_id))
 
 
-# @app.route('/reservation', methods=['GET', 'POST'])
-@app.route('/reservation/<int:car_id>', methods=['GET', 'POST'])
+@app.route('/reservation', methods=['GET', 'POST'])
+#@app.route('/reservation/<int:car_id>', methods=['GET', 'POST'])
 def reserve(car_id):
     if request.method == 'POST':
         name = request.form.get('name')
