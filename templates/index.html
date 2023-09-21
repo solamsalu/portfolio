@@ -3,23 +3,7 @@
 {% block title %}All Cars{% endblock %}
 
 {% block content %}
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('form').on('submit', function(e) {
-        e.preventDefault(); // prevent the default form submission behavior
 
-        var carType = $('.form-select').val(); // get the selected car type
-
-        if (carType) {
-            window.location.href = "{{ url_for('" + carType + "') }}"; // redirect to the appropriate page
-        } else {
-            alert('Please select a car type.'); // show an alert if no car type is selected
-        }
-    });
-});
-</script>
- -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
