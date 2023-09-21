@@ -6,40 +6,52 @@
 <main>
 
    <section class="hero">
-      <div class="container">
-         <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col-lg-6">
-               <h1>Make Your Journey Memorable</h1>
-               <p>Rent a car and explore your dream destinations at your own pace.</p>
+                <h1>Make Your Journey Memorable</h1>
+                <p>Rent a car and explore your dream destinations at your own pace.</p>
             </div>
             <div class="col-lg-6">
-               <form>
-                  <div class="input-group mb-3">
-                     <input type="text" class="form-control" placeholder="Pick-up Location"
-                        aria-label="Pick-up Location">
-                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                  </div>
-                  <div class="input-group mb-3">
-                     <input type="text" class="form-control" placeholder="Drop-off Location"
-                        aria-label="Drop-off Location">
-                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                  </div>
-                  <div class="input-group mb-3">
-                     <input type="text" class="form-control datepicker" placeholder="Pick-up Date"
-                        aria-label="Pick-up Date">
-                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                  </div>
-                  <div class="input-group mb-3">
-                     <input type="text" class="form-control datepicker" placeholder="Drop-off Date"
-                        aria-label="Drop-off Date">
-                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Search</button>
-               </form>
+                <form>
+                    <div class="input-group mb-3">
+                        <select class="form-select" aria-label="Pick-up Location">
+                            <option selected disabled>Pick-up Location</option>
+                            <option value="addis">Addis Ababa</option>
+                            <option value="dire">Dire Dawa</option>
+                            <option value="gondar">Gondar</option>
+                            <option value="mekelle">Mekelle</option>
+                            <option value="hawassa">Hawassa</option>
+                        </select>
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-select" aria-label="Drop-off Location">
+                            <option selected disabled>Drop-off Location</option>
+                            <option value="addis">Addis Ababa</option>
+                            <option value="dire">Dire Dawa</option>
+                            <option value="gondar">Gondar</option>
+                            <option value="mekelle">Mekelle</option>
+                            <option value="hawassa">Hawassa</option>
+                        </select>
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control datepicker" placeholder="Pick-up Date"
+                            aria-label="Pick-up Date">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control datepicker" placeholder="Drop-off Date"
+                            aria-label="Drop-off Date">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
-         </div>
-      </div>
-   </section>
+        </div>
+    </div>
+</section>
    <section class="featured-cars py-5">
       <div class="container">
          <!-- Featured cars heading -->
